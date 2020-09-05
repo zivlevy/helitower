@@ -1,0 +1,7 @@
+{
+  "name": "heliTower",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
