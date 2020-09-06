@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'go',
     loadChildren: () => import('./go/go.module').then( m => m.GoPageModule)
   },
+  {
+    path: 'operating',
+    loadChildren: () => import('./operating/operating.module').then( m => m.OperatingPageModule)
+  },
 ];
 
 @NgModule({
