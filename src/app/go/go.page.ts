@@ -3,8 +3,7 @@ import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {StateService} from '../services/state.service';
 import {AircraftTypes} from '../model/state';
-import {LocationService} from '../services/location.service';
-import {NetworkService} from '../services/network.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-go',
@@ -17,6 +16,7 @@ export class GoPage implements OnInit, OnDestroy {
     callSign = 'דילר 1';
 
     constructor(private stateService: StateService,
+                private navCtrl: NavController
 ) {
     }
 
@@ -40,7 +40,9 @@ export class GoPage implements OnInit, OnDestroy {
                 }
             });
     }
-
+    operate() {
+        this.navCtrl.navigateRoot(`operating`);
+    }
     ngOnDestroy() {
         // force unsubscribe
         this.destroy$.next(true);

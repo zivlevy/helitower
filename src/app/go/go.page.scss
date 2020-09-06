@@ -1,12 +1,10 @@
 .content {
   height: 100%;
-  //filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
 }
 
 
 .wrap {
   height: 50%;
-  //filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
 
 
 }
@@ -30,12 +28,11 @@
   margin:  0 auto;
   height: 52.4px;
 
-  //border: solid 1.6px #ffffff;
   font-size: 24px;
   line-height:48px ;
   color: #ffffff;
   text-align: center;
-  background: #2a2a2a;
+  background: rgba(62, 74, 84, .6);
   padding: 0 26px;
   width: 100vw;
 

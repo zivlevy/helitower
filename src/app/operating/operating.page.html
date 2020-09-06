@@ -1,9 +1,60 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>operating</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>operating</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="primary">
+    <div class="btn-wrap">
+      <div id="container">
+        <ion-card>
 
+          <ion-card-header>
+            <strong>Your location:</strong>
+          </ion-card-header>
+
+          <ion-card-content >
+            <div *ngIf="loc">
+              <ion-item>Lat: {{loc.coords.latitude | number : '.0-5'}}</ion-item>
+              <ion-item>lng: {{loc.coords.longitude | number : '.0-5'}}</ion-item>
+              <ion-item>Speed: {{loc.coords.speed | number : '.0-0'}}</ion-item>
+              <ion-item>time: {{loc.timestamp | date : 'dd/MM/yy HH:mm:ss' }}</ion-item>
+            </div>
+            <div *ngIf="!loc">
+              <ion-item>Waiting for GPS lock</ion-item>
+            </div>
+
+          </ion-card-content>
+
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <strong>Location send status:</strong>
+          </ion-card-header>
+
+          <ion-card-content >
+            <div *ngIf="sendStatus !== null">
+              <ion-item>last successful delivery: {{sendStatus.date | date : 'dd/MM/yy HH:mm:ss' }}</ion-item>
+            </div>
+
+          </ion-card-content>
+
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <strong>Network connection status:</strong>
+          </ion-card-header>
+
+          <ion-card-content >
+
+            <ion-item>Is Connected to internet: {{isConnected}}</ion-item>
+
+          </ion-card-content>
+
+        </ion-card>
+      </div>
+        <ion-button class="stop-btn" fill="solid" strong="true" (click)="stop()" color="danger">הפסק</ion-button>
+    </div>
 </ion-content>

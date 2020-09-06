@@ -1,0 +1,12 @@
+.btn-wrap {
+  position: relative;
+  text-align: center;
+  height: calc(100%);
+  .stop-btn {
+    position: absolute;
+    left: calc(50vw - 40vw);
+    bottom: 20px;
+    width: 80vw;
+    padding: 0px;
+  }
+}

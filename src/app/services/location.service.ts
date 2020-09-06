@@ -90,9 +90,9 @@ export class LocationService {
     // Save a new location to Firebase
     saveNewLocation(loc: Position) {
         if (!this.user || !this.isConnected) {
-            // window.alert('not saving');
             return;
         }
+
         this.locationsCollection = this.afs.collection(
             `locations/${this.user.uid}/track`,
             ref => ref.orderBy('timestamp')
@@ -109,16 +109,6 @@ export class LocationService {
         }).catch(err => {
             this.locationSend$.next({msg: 'bad', date: Date.now()});
         });
-        // this.afs.collection(`locations/${this.user.uid}/track`, ref => ref.orderBy('ts')).add({
-        //     lat: loc.lat,
-        //     lng: loc.lng,
-        //     timestamp: loc.ts,
-        //     alt: loc.altitude,
-        //     speed: loc.speed,
-        //     heading: loc.heading,
-        // })
-        //     .then()
-        //     .catch(err => console.log(err));
     }
 
     getCurrentLocation$() {
@@ -194,12 +184,9 @@ export class LocationService {
             this.backgroundGeolocation.deleteAllLocations();
             const positions = locations.map(l => this.locationToPosition(l));
             if (positions.length === 0) {
-                console.log(`[GeoLocation] There's nothing to send - valid locations array is empty`);
             } else if (positions.length === 1) {
-                console.log(`[GeoLocation] Sending a location update`);
                 this.handlePoistionChange(positions[positions.length - 1]);
             } else {
-                console.log(`[GeoLocation] Sending bulk location update on each location update: ${positions.length}`);
                 this.bulkPositionChanged.next(positions.splice(0, positions.length - 1));
                 this.handlePoistionChange(positions[0]);
             }
