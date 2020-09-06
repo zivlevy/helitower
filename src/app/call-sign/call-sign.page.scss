@@ -1,0 +1,35 @@
+.call-sign {
+  height: calc(100% - 80px);
+  //background-color: orange;
+  text-align: center;
+
+
+  &-input {
+    margin: 0 auto;
+    margin-top: 80px;
+    height: 52.4px;
+    border-radius: 29px;
+    border: solid 1.6px #ffffff;
+    font-size: 24px;
+    color: #ffffff !important;
+    text-align: center;
+    background: transparent !important;
+    padding: 0 26px;
+    width: 80vw;
+    &::placeholder{
+      //font-family: Lato;
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    &:focus{
+      outline: none;
+      background: transparent !important;
+    }
+  }
+  &-btn {
+    //margin-top: 10px;
+    color: white;
+
+
+  }
+}

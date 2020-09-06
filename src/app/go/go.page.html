@@ -1,0 +1,22 @@
+<ion-header class="title">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>הפעלה</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+    <div class="wrap">
+        <div class="airplane-type" [ngClass]="type"></div>
+    </div>
+    <div class="call-sign">
+        <div>{{callSign}}</div>
+    </div>
+    <div class="btn-wrap">
+        <ion-button class="go-btn" color="success" fill="solid" strong="true">הפעל</ion-button>
+    </div>
+
+
+</ion-content>

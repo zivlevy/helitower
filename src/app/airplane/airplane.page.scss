@@ -1,0 +1,35 @@
+
+
+.content {
+  height: 100%;
+  //filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+}
+
+
+.wrap {
+  height: 50%;
+  //filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+
+
+}
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}
+
+.helicopter {
+  background: url(../../assets/img/helicopter.jpg);
+}
+.airplane {
+  background: url(../../assets/img/airplane.jpg);
+}
+
+.airplane-type {
+  height: 100%;
+  --color: #fff;
+  --background:none;
+  background-size: cover;
+  background-position: center;
+}
+
+

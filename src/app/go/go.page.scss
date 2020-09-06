@@ -1,0 +1,56 @@
+.content {
+  height: 100%;
+  //filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+}
+
+
+.wrap {
+  height: 50%;
+  //filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+
+
+}
+.helicopter {
+  background: url(../../assets/img/helicopter.jpg);
+}
+.airplane {
+  background: url(../../assets/img/airplane.jpg);
+}
+
+.airplane-type {
+  height: 100%;
+  --color: #fff;
+  --background:none;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.call-sign {
+  margin:  0 auto;
+  height: 52.4px;
+
+  //border: solid 1.6px #ffffff;
+  font-size: 24px;
+  line-height:48px ;
+  color: #ffffff;
+  text-align: center;
+  background: var(--ion-color-dark);
+  padding: 0 26px;
+  width: 100vw;
+
+}
+
+.btn-wrap {
+  position: relative;
+  text-align: center;
+  height: calc(50% - 54px);
+  .go-btn {
+    position: absolute;
+    left: calc(50vw - 40vw);
+    bottom: 20px;
+    width: 80vw;
+    padding: 0px;
+  }
+}
+

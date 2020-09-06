@@ -1,0 +1,26 @@
+<ion-header class="title">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>סוג מטוס</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="content">
+        <div class="ion-activatable  wrap"  ion-button (click)="gotoCallSign('airplane')">
+            <div class="airplane-type airplane ripple-parent">
+                <ion-ripple-effect></ion-ripple-effect>
+            </div>
+        </div>
+        <div class="ion-activatable  wrap" ion-button (click)="gotoCallSign('helicopter')">
+            <div class="airplane-type helicopter ripple-parent">
+                <ion-ripple-effect></ion-ripple-effect>
+            </div>
+        </div>
+
+
+    </div>
+
+</ion-content>
