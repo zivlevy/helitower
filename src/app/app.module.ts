@@ -13,6 +13,10 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireStorageModule} from '@angular/fire/storage';
+import {BackgroundGeolocation} from '@ionic-native/background-geolocation/ngx';
+import { Network } from '@ionic-native/network/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+
 
 @NgModule({
     declarations: [AppComponent],
@@ -25,10 +29,14 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
         AngularFireAuthModule,
         AngularFireDatabaseModule,
         AngularFireStorageModule
+
     ],
     providers: [
         StatusBar,
         SplashScreen,
+        BackgroundGeolocation,
+        Network,
+        BackgroundMode,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent]

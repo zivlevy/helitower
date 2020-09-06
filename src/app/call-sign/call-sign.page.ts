@@ -14,7 +14,9 @@ export class CallSignPage implements OnInit, OnDestroy {
   @ViewChild('myInput', { static: false }) callsignInput: IonInput;
   callSign = '';
   constructor(public navCtrl: NavController,
-              private stateService: StateService) { }
+              private stateService: StateService) {
+
+  }
 
   ngOnInit() {
     this.stateService.getCallSign$()

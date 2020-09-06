@@ -7,10 +7,10 @@ import {
 } from '@ionic-native/background-geolocation/ngx';
 import {Platform} from '@ionic/angular';
 import {BehaviorSubject} from 'rxjs';
-import {ZLocation} from '../../app/model/location.model';
+import {ZLocation} from '../model/location.model';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {UserService} from './user.service';
-import {constants} from '../../app/model/constants';
+import {constants} from '../model/constants';
 import {BackgroundGeolocationAccuracy} from '@ionic-native/background-geolocation';
 import {NetworkService} from './network.service';
 
