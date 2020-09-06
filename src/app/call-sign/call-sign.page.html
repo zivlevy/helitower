@@ -9,10 +9,10 @@
 
 <ion-content color="primary">
 <div class="call-sign">
-   <ion-input #myInput type="text" placeholder="הקלד אות קריאה" class="call-sign-input"></ion-input>
+   <ion-input #myInput type="text" placeholder="הקלד אות קריאה" class="call-sign-input" [value]="callSign"></ion-input>
   <div>
 
-    <ion-button  fill="clear" class="call-sign-btn" (click)="next()">Next</ion-button>
+    <ion-button *ngIf="myInput.value.trim().length >1" fill="clear" class="call-sign-btn" (click)="next()" >Next</ion-button>
 
   </div>
 
