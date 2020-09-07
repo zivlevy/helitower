@@ -23,7 +23,7 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
     entryComponents: [],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(),
+        IonicModule.forRoot({mode: 'ios'}),
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,

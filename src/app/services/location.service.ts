@@ -1,8 +1,8 @@
 import {EventEmitter, Injectable, NgZone} from '@angular/core';
 import {
     BackgroundGeolocation,
-    BackgroundGeolocationConfig,
-    BackgroundGeolocationEvents, BackgroundGeolocationLocationProvider,
+    BackgroundGeolocationEvents,
+    BackgroundGeolocationLocationProvider,
     BackgroundGeolocationResponse
 } from '@ionic-native/background-geolocation/ngx';
 import {Platform} from '@ionic/angular';
@@ -11,8 +11,9 @@ import {ZLocation} from '../model/location.model';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {UserService} from './user.service';
 import {constants} from '../model/constants';
-import {BackgroundGeolocationAccuracy} from '@ionic-native/background-geolocation';
 import {NetworkService} from './network.service';
+import {StateService} from './state.service';
+import {AircraftTypes} from '../model/state';
 
 declare type GeoLocationServiceState = 'disabled' | 'searching' | 'tracking';
 
@@ -53,13 +54,16 @@ export class LocationService {
     locationsCollection: AngularFirestoreCollection<any>;
     user: any;
     isConnected = false;
+    callSign = '';
+    aircraftType = AircraftTypes.none;
 
     constructor(private backgroundGeolocation: BackgroundGeolocation,
                 private platform: Platform,
                 private userService: UserService,
                 private afs: AngularFirestore,
                 private readonly ngZone: NgZone,
-                private networkService: NetworkService) {
+                private networkService: NetworkService,
+                private stateService: StateService) {
 
         this.watchNumber = -1;
         this.positionChanged = new EventEmitter<Position>();
@@ -69,34 +73,37 @@ export class LocationService {
         this.currentLocation = null;
         this.wasInitialized = false;
 
-        this.userService.getCurentUser$()
-            .pipe()
-            .subscribe(user => {
-                this.user = user;
-                if (user) {
-                    console.log(user);
-                }
-
-            });
 
         this.platform.ready().then(() => {
             this.networkService.getIsConnected$()
                 .subscribe(isConnected => this.isConnected = isConnected);
-            this.enable();
 
+            this.userService.getCurentUser$()
+                .pipe()
+                .subscribe(user => {
+                    this.user = user;
+                    if (user) {
+                        console.log(user);
+                    }
+
+                });
+
+            this.stateService.getCallSign$()
+                .pipe()
+                .subscribe(callSign => this.callSign = callSign);
+
+            this.stateService.getAircraftType$()
+                .pipe()
+                .subscribe(aircraftType => this.aircraftType = aircraftType);
         });
     }
 
     // Save a new location to Firebase
     saveNewLocation(loc: Position) {
-        if (!this.user || !this.isConnected) {
+        if (!this.user || !this.isConnected || this.aircraftType === AircraftTypes.none) {
             return;
         }
 
-        this.locationsCollection = this.afs.collection(
-            `locations/${this.user.uid}/track`,
-            ref => ref.orderBy('timestamp')
-        );
         this.afs.doc(`locations/${this.user.uid}`).set({
             lat: loc.coords.latitude,
             lng: loc.coords.longitude,
@@ -104,11 +111,16 @@ export class LocationService {
             alt: loc.coords.altitude,
             speed: loc.coords.speed,
             heading: loc.coords.heading,
+            uid: this.user.uid,
+            callsign: this.callSign,
+            type: this.aircraftType === AircraftTypes.airplane ? 'ac' : 'hl'
+
         }, {merge: true}).then(() => {
             this.locationSend$.next({msg: 'good', date: Date.now()});
         }).catch(err => {
             this.locationSend$.next({msg: 'bad', date: Date.now()});
         });
+
     }
 
     getCurrentLocation$() {
@@ -234,12 +246,16 @@ export class LocationService {
         this.backgroundGeolocation.start();
     }
 
-    private async stopWatching() {
+    private stopWatching() {
         this.state = 'disabled';
         this.currentLocation = null;
         this.positionChanged.next(null);
+
         console.log('[GeoLocation] Stopping background tracking');
-        await this.backgroundGeolocation.stop();
+        this.backgroundGeolocation.stop();
+
+        this.afs.doc(`locations/${this.user.uid}`).delete();
+
 
     }
 
@@ -281,6 +297,15 @@ export class LocationService {
             },
             timestamp: location.time
         } as Position;
+    }
+
+
+    startLocation() {
+        this.enable();
+    }
+
+    stopLocation() {
+        this.disable();
     }
 
 }

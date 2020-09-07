@@ -1,12 +1,28 @@
-.btn-wrap {
-  position: relative;
+.container {
+
   text-align: center;
-  height: calc(100%);
-  .stop-btn {
-    position: absolute;
-    left: calc(50vw - 40vw);
-    bottom: 20px;
-    width: 80vw;
-    padding: 0px;
+
+}
+
+.good-data {
+  background-color: rgba(26, 131, 68, .8);
+  color: white;
+}
+
+.bad-data {
+  background-color: rgb(223, 96, 105);
+  color: white;
+}
+
+.header-title {
+  font-size: 1.2rem;
+}
+.info {
+  padding: 5px 10px;
+  font-size: 1.3rem;
+  &-item {
+    text-align: left;
   }
+
+
 }

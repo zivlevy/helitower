@@ -14,9 +14,13 @@
     <div class="call-sign">
         <div>{{callSign}}</div>
     </div>
-    <div class="btn-wrap">
-        <ion-button class="go-btn" color="success" fill="solid" strong="true" (click)="operate()">הפעל</ion-button>
-    </div>
+
 
 
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-button class="go-btn" color="success" fill="solid" strong="true" expand="block" (click)="operate()">הפעל</ion-button>
+    </ion-toolbar>
+</ion-footer>

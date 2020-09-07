@@ -1,60 +1,68 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-title>operating</ion-title>
+        <ion-title>{{callSign}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content color="primary">
-    <div class="btn-wrap">
-      <div id="container">
-        <ion-card>
+        <div class="container">
+            <ion-card [ngClass]="{'good-data': loc, 'bad-data': !loc}" class="header-title">
+                <ion-card-header  [ngClass]="{'good-data': loc, 'bad-data': !loc}">
+                    <strong>מיקום</strong>
+                </ion-card-header>
 
-          <ion-card-header>
-            <strong>Your location:</strong>
-          </ion-card-header>
+                <ion-card-content>
+                    <div *ngIf="loc">
+                        <div class="info info-item">Lat: {{loc.coords.latitude | number : '.0-3'}}</div>
+                        <div class="info info-item">lng: {{loc.coords.longitude | number : '.0-3'}}</div>
+                        <div class="info info-item">Speed: {{loc.coords.speed | number : '.0-0'}}</div>
+                        <div class="info info-item">time: {{loc.timestamp | date : 'dd/MM/yy HH:mm:ss' }}</div>
+                    </div>
+                    <div *ngIf="!loc" dir="rtl" class="info">
+                        ממתין לקליטת GPS
+                    </div>
 
-          <ion-card-content >
-            <div *ngIf="loc">
-              <ion-item>Lat: {{loc.coords.latitude | number : '.0-5'}}</ion-item>
-              <ion-item>lng: {{loc.coords.longitude | number : '.0-5'}}</ion-item>
-              <ion-item>Speed: {{loc.coords.speed | number : '.0-0'}}</ion-item>
-              <ion-item>time: {{loc.timestamp | date : 'dd/MM/yy HH:mm:ss' }}</ion-item>
-            </div>
-            <div *ngIf="!loc">
-              <ion-item>Waiting for GPS lock</ion-item>
-            </div>
+                </ion-card-content>
 
-          </ion-card-content>
+            </ion-card>
 
-        </ion-card>
+<!--            <ion-card  [ngClass]="{'good-data': sendStatus !== null, 'bad-data': sendStatus === null}">-->
+<!--                <ion-card-header  [ngClass]="{'good-data': sendStatus !== null, 'bad-data': sendStatus === null}">-->
+<!--                    <strong>שליחת מיקום אחרונה</strong>-->
+<!--                </ion-card-header>-->
 
-        <ion-card>
-          <ion-card-header>
-            <strong>Location send status:</strong>
-          </ion-card-header>
+<!--                <ion-card-content >-->
+<!--                    <div *ngIf="sendStatus !== null">-->
+<!--                        {{sendStatus.date | date : 'dd/MM/yy HH:mm:ss' }}-->
+<!--                    </div>-->
 
-          <ion-card-content >
-            <div *ngIf="sendStatus !== null">
-              <ion-item>last successful delivery: {{sendStatus.date | date : 'dd/MM/yy HH:mm:ss' }}</ion-item>
-            </div>
+<!--                    <div *ngIf="sendStatus === null">-->
+<!--                        טרם נשלחו נתונים-->
+<!--                    </div>-->
 
-          </ion-card-content>
+<!--                </ion-card-content>-->
 
-        </ion-card>
+<!--            </ion-card>-->
 
-        <ion-card>
-          <ion-card-header>
-            <strong>Network connection status:</strong>
-          </ion-card-header>
+            <ion-card [ngClass]="{'good-data': isConnected, 'bad-data': !isConnected}">
+                <ion-card-header  [ngClass]="{'good-data': isConnected, 'bad-data': !isConnected}"  class="header-title">
+                    <strong>חיבור אינטרנט</strong>
+                </ion-card-header>
 
-          <ion-card-content >
+                <ion-card-content>
+                    <div *ngIf="isConnected" class="info">מחובר</div>
+                    <div *ngIf="!isConnected" class="info">מנותק</div>
 
-            <ion-item>Is Connected to internet: {{isConnected}}</ion-item>
+                </ion-card-content>
 
-          </ion-card-content>
-
-        </ion-card>
-      </div>
-        <ion-button class="stop-btn" fill="solid" strong="true" (click)="stop()" color="danger">הפסק</ion-button>
-    </div>
+            </ion-card>
+        </div>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-button class="stop-btn" fill="solid" size="" strong="true" expand="block" (click)="stop()" color="danger">
+            הפסק
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>

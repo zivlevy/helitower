@@ -22,9 +22,11 @@
 }
 .airplane {
   background: url(../../assets/img/airplane.jpg);
+  border-bottom: 1px lightgray solid;
 }
 
 .airplane-type {
+
   height: 100%;
   --color: #fff;
   --background:none;
