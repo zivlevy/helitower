@@ -16,7 +16,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {BackgroundGeolocation} from '@ionic-native/background-geolocation/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -37,6 +37,7 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
         BackgroundGeolocation,
         Network,
         BackgroundMode,
+        ScreenOrientation,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent]

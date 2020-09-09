@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {NetworkService} from './services/network.service';
 import {BackgroundMode} from '@ionic-native/background-mode/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private networkService: NetworkService,
-    private backgroundMode: BackgroundMode
+    private backgroundMode: BackgroundMode,
+    private screenOrientation: ScreenOrientation
   ) {
     this.initializeApp();
   }
@@ -25,6 +27,7 @@ export class AppComponent {
   initializeApp() {
 
     this.platform.ready().then(() => {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
       if (this.platform.is('android')) {
         this.backgroundMode.enable();
         this.backgroundMode.on('activate').subscribe(() => {
