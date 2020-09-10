@@ -110,7 +110,7 @@ export class LocationService {
             timestamp: loc.timestamp,
             alt: loc.coords.altitude,
             speed: loc.coords.speed,
-            heading: loc.coords.heading,
+            heading: loc.coords.heading ,
             uid: this.user.uid,
             callsign: this.callSign,
             type: this.aircraftType === AircraftTypes.airplane ? 'ac' : 'hl'
@@ -293,7 +293,7 @@ export class LocationService {
                 latitude: location.latitude,
                 longitude: location.longitude,
                 speed: location.speed * 3.6,
-                heading: location.bearing
+                heading: location.bearing === undefined ? 0 : location.bearing,
             },
             timestamp: location.time
         } as Position;

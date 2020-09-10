@@ -16,6 +16,7 @@
                         <div class="info info-item">Lat: {{loc.coords.latitude | number : '.0-3'}}</div>
                         <div class="info info-item">lng: {{loc.coords.longitude | number : '.0-3'}}</div>
                         <div class="info info-item">Speed: {{loc.coords.speed | number : '.0-0'}}</div>
+                        <div class="info info-item">heading: {{loc.coords.heading}}</div>
                         <div class="info info-item">time: {{loc.timestamp | date : 'dd/MM/yy HH:mm:ss' }}</div>
                     </div>
                     <div *ngIf="!loc" dir="rtl" class="info">

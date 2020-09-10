@@ -14,9 +14,10 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {BackgroundGeolocation} from '@ionic-native/background-geolocation/ngx';
-import { Network } from '@ionic-native/network/ngx';
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
-import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import {Network} from '@ionic-native/network/ngx';
+import {BackgroundMode} from '@ionic-native/background-mode/ngx';
+import {ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
+import {LocationAccuracy} from '@ionic-native/location-accuracy/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
         Network,
         BackgroundMode,
         ScreenOrientation,
+        LocationAccuracy,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent]
